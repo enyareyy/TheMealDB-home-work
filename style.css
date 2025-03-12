@@ -1,0 +1,99 @@
+body{
+    background-color: #463f3a;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.container {
+    width: 80%;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.headerBtns{
+    margin-top: 15px;
+}
+#homeBtn{
+    background-color: #a4161a;
+    border: 1px solid transparent;
+    border-radius: 10%;
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+}
+#randomBtn{
+    font-size: 16px;
+    color: white;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 10%;
+    width: 70px;
+    height: 40px;
+}
+#randomBtn:hover{
+    background-color: #a4161a;
+    border: 1px solid transparent;
+    border-radius: 10%;
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+}
+#searchInput{
+    width: 100px;
+    height: 38px;
+    border: 1px solid gray;
+    border-radius: 5%;
+    font-size: 16px;
+}
+#searchBtn{
+    background-color: #a4161a;
+    border: 1px solid transparent;
+    border-radius: 10%;
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+}
+.card {
+    width: 247px;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+#list{
+    display: flex;
+    align-items: space-between;
+    flex-wrap: wrap;
+}
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 16px;
+    color: #fb8500;
+}
+.card-title:hover{
+    color: #ffb703;
+}
+.alfabet{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+.alfabet:hover{
+    color: #ffb703;
+}
