@@ -4,17 +4,18 @@ const searchInput = document.querySelector("#searchInput");
 const homeBtn = document.querySelector(`#homeBtn`)          
 const randomBtn= document.querySelector(`#randomBtn`)
 const abc1 = document.querySelector(`#abc`);
+const abc = document.querySelectorAll(`a`)
+
 const _baseUrl = `https://www.themealdb.com/api/json/v1/1/`;
+
 const searchAbc = `search.php?f=`
 const search = `search.php?s=`
+const _randomUrl = `random.php`
 const categoriesUrl = `categories.php`
 const idMeals = `lookup.php?i=`
-const abc = document.querySelectorAll(`a`)
-// let mealsData = []; 
+const searchIngredient = `filter.php?i=`;
 
-
-
-// главная стрница категории меню отоброжение
+// главная страница категории меню отображение запрос API
 function getAMeals() {
     fetch(_baseUrl+categoriesUrl)
         .then(response => response.json())
@@ -46,7 +47,7 @@ homeBtn.onclick=()=>{
 
 
 
-//функия выводим id еды затем уже данные блюда 
+//функция выводим id еды затем уже данные блюда запрос API
 function getMealsByID(id){
     fetch(_baseUrl+idMeals+id)
     .then(res=>res.json())
@@ -55,6 +56,7 @@ function getMealsByID(id){
         showIngredient(data.meals)
     })
 }
+//очищаем затем выводим данные в браузер
 function showIngredient(arr){
     abc.innerHTML = ""
     list.innerHTML = "";
@@ -65,7 +67,8 @@ function showIngredient(arr){
             const measure = item[`strMeasure${i}`];
             if (ingredient && ingredient.trim()) {
                 ingredientsBlocks += `
-                    <div class="ingredient-card">
+                    <div class="ingredient-card" onclick ="getIngredientMeals('${ingredient}')"> 
+                    <img src="https://www.themealdb.com/images/ingredients/${ingredient}-small.png" class="card-img-top" alt="">
                         <p>${ingredient}
                         <br>
                         ${measure}</p>
@@ -91,7 +94,50 @@ function showIngredient(arr){
             </div>
         </div>`;
     }
+    
 }
+
+
+//после онклика зарабатывает эта функция где берем данные из API, ingredient это название ингредиента на который уже кликнули 
+function getIngredientMeals(ingredient) { 
+    fetch(_baseUrl + searchIngredient + ingredient)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.meals) {
+                showIngredientMeals(data.meals, ingredient);
+            }
+        })
+}
+// отображается в браузере 
+function showIngredientMeals(arr, ingredient) {
+    abc.innerHTML = "";
+    list.innerHTML = "";
+console.log(ingredient);
+
+    abc1.innerHTML = `
+        <div class="abcIng"> 
+            <h2>${ingredient}</h2>
+        </div>`
+    list.innerHTML=`
+        <div class="ingCard"> 
+            <div class = "ingImg"> 
+                <img  src="https://www.themealdb.com/images/ingredients/${ingredient}-small.png" alt="${ingredient}" > 
+            </div>
+
+            <div class = "ingMeals"> 
+                ${arr.map(item => `
+                    <div class="cardIng" > 
+                        <img src="${item.strMealThumb}"alt="${item.strMeal}" > 
+                        <h5 class="card-title" >${item.strMeal}</h5> 
+                    </div>
+                `) 
+                }
+            </div>
+        </div>
+    `;
+}
+
 
 
 
@@ -132,7 +178,7 @@ abc.forEach((letter)=>{
 
 
 
-//функция поиска по названию, если есть выдает еду если нет выходит что нет 
+//функция поиска по названию, если есть выдает еду если нет выходит что ошибка 
 function getSearchName(name){
     fetch(_baseUrl+search+name)
     .then(res=>res.json())
@@ -155,7 +201,6 @@ searchInput.onchange=()=>{
 
 
 // при клике на рандом выдает рандомную еду 
-const _randomUrl = `random.php`
 randomBtn.onclick = () => {
     fetch(_baseUrl+_randomUrl)
         .then(response => response.json())

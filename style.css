@@ -124,7 +124,8 @@ header{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .ingredient-card {
@@ -133,14 +134,20 @@ header{
     min-width: 120px;
 }
 
-.ingredient-card p {
+.ingredient-card {
     font-size: 18px;
     margin: 0;
     color: #F4722B;
 }
-.ingredient-card p:hover{
+.ingredient-card:hover{
     color: #ffc107;
 }
+
+.ingredient-card img{
+    width: 120px;
+    height: 120px;
+}
+
 .ingrd{
     color: white;
 }
@@ -149,4 +156,39 @@ header{
 }
 .ingrd p{
     font-size: 18px;
+}
+.abcIng{
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+.ingCard{
+    display: flex; 
+    align-items: flex-start;
+    gap: 20px;
+}
+.ingImg{
+    text-align: center;
+    color: white; 
+}
+.ingImg img{
+    width: 450px; 
+    height: 450px;
+}
+.ingMeals{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+
+.cardIng{
+    width: 200px; 
+    text-align: center; 
+    color: #F4722B;
+}
+.cardIng:hover{
+    color: #ffc107;
+}
+.cardIng img{
+    width: 100%; 
 }
